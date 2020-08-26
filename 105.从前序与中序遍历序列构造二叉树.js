@@ -15,7 +15,7 @@
 /**
  * @param {number[]} preorder
  * @param {number[]} inorder
- * @return {TreeNode}
+ * @returns {TreeNode}
  */
 function buildTree(preorder, inorder) {
   let preIndex = 0;

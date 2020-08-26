@@ -17,7 +17,7 @@
 
 /**
  * @param {Node} root
- * @return {Node}
+ * @returns {Node}
  */
 function connect(root) {
   if (!root) return null;

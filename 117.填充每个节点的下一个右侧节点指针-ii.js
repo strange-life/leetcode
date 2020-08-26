@@ -17,7 +17,7 @@
 
 /**
  * @param {Node} root
- * @return {Node}
+ * @returns {Node}
  */
 function connect(root) {
   let head = root;
