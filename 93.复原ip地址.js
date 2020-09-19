@@ -10,8 +10,11 @@
  * @return {string[]}
  */
 function restoreIpAddresses(s) {
-  const numMap = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 };
   const SEG_COUNT = 4;
+  const ADDR_MAX = 255;
+  const ADDR_MAX_COUNT = 3;
+  const numMap = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9 };
+
   const segments = Array(SEG_COUNT);
   const res = [];
 
@@ -33,11 +36,15 @@ function restoreIpAddresses(s) {
       return;
     }
 
-    let addr = 0;
-    for (let i = index; i < s.length; i++) {
-      addr = addr * 10 + numMap[s[i]];
-      if (addr > 255) break;
-      if (s.length - i - 1 > 3 * (SEG_COUNT - seg - 1)) continue;
+    for (
+      let i = index, addr = numMap[s[i]];
+      addr <= ADDR_MAX && i < s.length;
+      i++, addr = addr * 10 + numMap[s[i]]
+    ) {
+      const left = s.length - i - 1;
+      const leftSeg = SEG_COUNT - seg - 1;
+      if (left < leftSeg) break;
+      if (left > ADDR_MAX_COUNT * leftSeg) continue;
 
       segments[seg] = addr;
       _restoreIpAddresses(seg + 1, i + 1);

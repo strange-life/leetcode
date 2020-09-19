@@ -14,16 +14,14 @@ function simplifyPath(path) {
   const stack = [];
 
   for (const segment of segments) {
-    if (!segment) continue;
+    if (!segment || segment === '.') continue;
 
     if (segment === '..') {
       if (stack.length) stack.pop();
       continue;
     }
 
-    if (segment !== '.') {
-      stack.push(segment);
-    }
+    stack.push(segment);
   }
 
   return '/' + stack.join('/');
