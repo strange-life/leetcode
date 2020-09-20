@@ -16,9 +16,17 @@ function findMin(nums) {
   while (low < high) {
     const mid = low + Math.trunc((high - low) / 2);
 
-    if (nums[mid] < nums[high]) high = mid;
-    else if (nums[mid] > nums[high]) low = mid + 1;
-    else high--;
+    if (nums[mid] < nums[high]) {
+      high = mid;
+      continue;
+    }
+
+    if (nums[mid] > nums[high]) {
+      low = mid + 1;
+      continue;
+    }
+
+    high--;
   }
 
   return nums[low];

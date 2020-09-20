@@ -10,16 +10,16 @@
  * @returns {number}
  */
 function fib(N) {
-  if (N < 1) return 0;
-  let prev = 1,
+  const MOD = 1e9 + 7;
+  let prev = 0,
     curr = 1;
 
-  for (let i = 3; i <= N; i++) {
-    let sum = prev + curr;
+  for (let i = 0; i < N; i++) {
+    const sum = (prev + curr) % MOD;
     prev = curr;
     curr = sum;
   }
 
-  return curr;
+  return prev;
 }
 // @lc code=end

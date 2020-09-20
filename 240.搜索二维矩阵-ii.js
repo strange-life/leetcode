@@ -11,15 +11,21 @@
  * @return {boolean}
  */
 function searchMatrix(matrix, target) {
-  if (!matrix.length) return false;
-
   let row = 0,
-    col = matrix[0].length - 1;
+    col = (matrix[0]?.length ?? 0) - 1;
 
   while (row < matrix.length && col >= 0) {
-    if (matrix[row][col] === target) return true;
-    if (matrix[row][col] < target) row++;
-    else col--;
+    if (matrix[row][col] < target) {
+      row++;
+      continue;
+    }
+
+    if (matrix[row][col] > target) {
+      col--;
+      continue;
+    }
+
+    return true;
   }
 
   return false;

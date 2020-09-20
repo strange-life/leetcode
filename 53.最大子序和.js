@@ -10,12 +10,10 @@
  * @return {number}
  */
 function maxSubArray(nums) {
-  if (!nums.length) return 0;
+  let current = 0,
+    max = Number.MIN_SAFE_INTEGER;
 
-  let current = nums[0],
-    max = nums[0];
-
-  for (let i = 1; i < nums.length; i++) {
+  for (let i = 0; i < nums.length; i++) {
     current = Math.max(nums[i], nums[i] + current);
     max = Math.max(max, current);
   }
